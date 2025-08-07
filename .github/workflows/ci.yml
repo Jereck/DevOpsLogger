@@ -25,6 +25,9 @@ jobs:
             - name: Build Project
               run: dotnet build --no-restore --configuration Release
 
+            - name: Run Unit Tests
+              run: dotnet test --no-build --verbosity normal
+
             - name: Install EF Core CLI
               run: dotnet tool install --global dotnet-ef
 
@@ -36,6 +39,4 @@ jobs:
             
             - name: Run EF Core Migrations
               run: dotnet ef database update --project DevOpsLogger.Api
-
-            - name: Run Tests
-              run: echo "No tests yet. Just updating this for git pushing"
+            
