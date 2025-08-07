@@ -18,9 +18,12 @@ jobs:
               uses: actions/setup-dotnet@v3
               with:
                 dotnet-version: 9.0.x
+
+            - name: Clean
+              run: dotnet clean
             
             - name: Restore Dependencies
-              run: dotnet restore
+              run: dotnet restore DevOpsLogger.sln
             
             - name: Build Project
               run: dotnet build --no-restore --configuration Release
