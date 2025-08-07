@@ -18,24 +18,28 @@ jobs:
               uses: actions/setup-dotnet@v3
               with:
                 dotnet-version: 9.0.x
+
+            - name: Clean
+              run: dotnet clean
             
             - name: Restore Dependencies
-              run: dotnet restore
+              run: dotnet restore DevOpsLogger.sln
             
             - name: Build Project
-              run: dotnet build --no-restore --configuration Release
+              run: dotnet build DevOpsLogger.sln --no-restore --configuration Release
 
-            - name: Install EF Core CLI
-              run: dotnet tool install --global dotnet-ef
+            - name: Run Unit Tests
+              run: dotnet test DevOpsLogger.sln --no-build --no-restore --configuration Release --verbosity normal
 
-            - name: Add EF CLI to PATH
-              run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
+            # - name: Install EF Core CLI
+            #   run: dotnet tool install --global dotnet-ef
 
-            - name: Run EF Core Migrations (In-Memory SQLite)
-              run: dotnet ef database update --project DevOpsLogger.Api
+            # - name: Add EF CLI to PATH
+            #   run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
+
+            # - name: Run EF Core Migrations (In-Memory SQLite)
+            #   run: dotnet ef database update --project DevOpsLogger.Api
             
-            - name: Run EF Core Migrations
-              run: dotnet ef database update --project DevOpsLogger.Api
-
-            - name: Run Tests
-              run: echo "No tests yet"
+            # - name: Run EF Core Migrations
+            #   run: dotnet ef database update --project DevOpsLogger.Api
+            
