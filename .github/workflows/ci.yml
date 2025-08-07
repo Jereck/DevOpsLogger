@@ -38,4 +38,4 @@ jobs:
               run: dotnet ef database update --project DevOpsLogger.Api
 
             - name: Run Tests
-              run: echo "No tests yet"
+              run: echo "No tests yet. Just updating this for git pushing"
