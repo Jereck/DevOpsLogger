@@ -29,7 +29,7 @@ jobs:
               run: dotnet build DevOpsLogger.sln --no-restore --configuration Release
 
             - name: Run Unit Tests
-              run: dotnet test DevOpsLogger.sln --no-build --verbosity normal
+              run: dotnet test DevOpsLogger.sln --no-build --no-restore --configuration Release --verbosity normal
 
             # - name: Install EF Core CLI
             #   run: dotnet tool install --global dotnet-ef
